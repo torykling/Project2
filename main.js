@@ -1,4 +1,4 @@
-let deck = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+let deck = [2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10, 11, 11, 11, 11, 12, 12, 12, 12, 13, 13, 13, 13, 14, 14, 14, 14]
 // this function shuffles the deck randomly- found a Fisher-Yates shuffle on javascript info
 function shuffle() {
 	for(let k = deck.length - 1; k > 0; k--) {
@@ -23,7 +23,7 @@ function startGame() {
 	dealCards();
 	alert('The cards have been shuffled and dealt. Ready to play! Log playGame() to the console to begin!');
 }
-// figure out how to update the deck with suits)
+// (someday figure out how to update the deck with suits)
 
 let player1 = []
 let player2 = []
