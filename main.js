@@ -1,8 +1,32 @@
 let deck = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-// figure out how to update the deck (maybe with suits) and to randomly shuffle/deal to the two players
+// this function shuffles the deck randomly- found a Fisher-Yates shuffle on javascript info
+function shuffle() {
+	for(let k = deck.length - 1; k > 0; k--) {
+		let l = Math.floor(Math.random() * (k+1));
+		[deck[k], deck[l]] = [deck[l], deck[k]];
+	}
+}
+// this function splits the deck in two and deals to players
+function dealCards() {
+	for(let m = 0; m < deck.length; m++) {
+		if (m % 2 !== 0) {
+			player1.push(deck[m]);
+		} else {
+			player2.push(deck[m]);
+		}
+	}
+}
 
-let player1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-let player2 = [11, 2, 13, 14, 15, 16, 17, 18, 19, 20]
+// this starts the game
+function startGame() {
+	shuffle();
+	dealCards();
+	alert('The cards have been shuffled and dealt. Ready to play! Log playGame() to the console to begin!');
+}
+// figure out how to update the deck with suits)
+
+let player1 = []
+let player2 = []
 
 let thePot = []
 
@@ -27,9 +51,9 @@ function roundAlert(winner) {
 // this function checks to see if the game is over
 function gameOver(winner) {
 	if (player1.length === 0) {
-		alert('Game over. Player 1 is out of cards. Player 2 wins!');
+		alert('Game over. Player 1 is out of cards. Player 2 wins! Reload the page to play again!');
 	} else if (player2.length === 0) {
-		alert('Game over. Player 2 is out of cards. Player 1 wins!');
+		alert('Game over. Player 2 is out of cards. Player 1 wins! Reload the page to play again!');
 	} else {
 		roundAlert(winner);
 	}
@@ -73,7 +97,8 @@ function playGame() {
 	compareCards();
 }
 
+//welcome alert
+alert('Welcome to war! Log startGame() to the console to start the game.');
 
-
-
+// need to figure out a prompt that would allow the players to enter their names and rename player1 and player2
 
