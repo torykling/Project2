@@ -85,8 +85,10 @@ const roundAlert = (winner) => console.log(`End of round ${round}. ${winner} win
 function gameOver(winner) {
 	if (player1.length === 0) {
 		alert(`GAME OVER. ${player1Name} is out of cards. ${player2Name} WINS THE GAME!!! Reload the page to play again!`);
+		console.log(`GAME OVER. ${player1Name} is out of cards. ${player2Name} WINS THE GAME!!! Reload the page to play again!`);
 	} else if (player2.length === 0) {
 		alert(`GAME OVER. ${player2Name} is out of cards. ${player1Name} WINS THE GAME!!! Reload the page to play again!`);
+		console.log(`GAME OVER. ${player2Name} is out of cards. ${player1Name} WINS THE GAME!!! Reload the page to play again!`);
 	} else {
 		roundCount();
 		roundAlert(winner);
@@ -115,8 +117,10 @@ function compareCards() {
 			war();	
 		} else if (player1.length < 4) {
 			alert(`GAME OVER. ${player1Name} does not have enough cards for war and must forfeit. Refresh the page to play again!`);
+			console.log(`GAME OVER. ${player1Name} does not have enough cards for war and must forfeit. Refresh the page to play again!`);
 		} else {
 			alert(`GAME OVER. ${player2Name} does not have enough cards for war and must forfeit. Refresh the page to play again!`);
+			console.log(`GAME OVER. ${player2Name} does not have enough cards for war and must forfeit. Refresh the page to play again!`);
 		}
 		
 	} 
