@@ -4,7 +4,7 @@
 ## Goal
 ### The goal of this project was to create a program that would run in the console and simulate the classic card game "War".
 
-![Game Screenshot](screenShot.png "Game Screenshot")
+![Game Screenshot](gameScreenshot.png "Game Screenshot")
 
 ## Languages
 ### This game is built primarily in JavaScript with some html to allow the user to see the game in the browser console. 

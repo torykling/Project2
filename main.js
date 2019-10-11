@@ -46,9 +46,9 @@ function dealCards() {
 function startGame() {
 	shuffle();
 	dealCards();
-	alert('The cards have been shuffled and dealt. Ready to play! Log playGame() to the console to begin!');
+	alert('The cards have been shuffled and dealt. Ready to play! Log playGame() to draw your cards!');
 }
-// (someday figure out how to update the deck with suits)
+
 
 let player1 = []
 let player2 = []
@@ -70,17 +70,25 @@ const whatCards = () => {
 	const player2Card = thePot[thePot.length-1]
 	console.log(`${player1Name} played a ${player1Card.rank} of ${player1Card.suit}. ${player2Name} played a ${player2Card.rank} of ${player2Card.suit}.`)
 }
+
+let round = 0;
+// this function counts the rounds
+function roundCount() {
+	round += 1;
+	// callback();
+}
 // this function creates an alert to update the user about the results of the round
-const roundAlert = (winner) => console.log(`End of round. ${winner} wins! ${player1Name} has ${player1.length} cards. ${player2Name} has ${player2.length} cards.`);
+const roundAlert = (winner) => console.log(`End of round ${round}. ${winner} wins! ${player1Name} has ${player1.length} cards. ${player2Name} has ${player2.length} cards.`);
 
 
 // this function checks to see if the game is over
 function gameOver(winner) {
 	if (player1.length === 0) {
-		alert(`Game over. ${player1Name} is out of cards. ${player2Name} wins the game!!! Reload the page to play again!`);
+		alert(`GAME OVER. ${player1Name} is out of cards. ${player2Name} WINS THE GAME!!! Reload the page to play again!`);
 	} else if (player2.length === 0) {
-		alert(`Game over. ${player2Name} is out of cards. ${player1Name} wins the game!!! Reload the page to play again!`);
+		alert(`GAME OVER. ${player2Name} is out of cards. ${player1Name} WINS THE GAME!!! Reload the page to play again!`);
 	} else {
+		roundCount();
 		roundAlert(winner);
 	}
 }
@@ -102,21 +110,11 @@ function compareCards() {
 		// roundAlert('Player 2');
 	} else if (thePot[indexPlayerTwo].score === thePot[indexPlayerOne].score) { 
 		// whatCards();
-		console.log('A tie! This means war!')
+		alert('A tie! This means war!')
 		if (player1.length > 3 && player2.length > 3) {
 			war();	
-		} else if (player1.length < 4) {
-			console.log("One player does not have enough cards for war and must forfeit.");
-			for (let i = 0; i < player1.length; i++) {
-				player2.push(player1[i]);
-			}
-			gameOver(player2);
-		} else {
-			console.log("One player does not have enough cards for war and must forfeit.");
-			for (let i = 0; i < player1.length; i++) {
-				player2.push(player1[i]);
-			}
-			gameOver(player1);
+		} else if ((player1.length < 4) || (player2.length < 4)) {
+			alert('GAME OVER. One player does not have enough cards for war and must forfeit. Refresh the page to play again!');
 		}
 		
 	} 
