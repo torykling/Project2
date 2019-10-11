@@ -95,11 +95,11 @@ function compareCards() {
 		pushPotItems(player2);
 		gameOver('Player 2');
 		// roundAlert('Player 2');
-	} else { 
+	} else if (thePot[indexPlayerTwo].score === thePot[indexPlayerOne].score) { 
 		whatCards();
 		console.log('A tie! This means war!')
 		war();
-	}
+	} 
 }
 
 // this function makes war happen
