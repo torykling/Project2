@@ -113,8 +113,10 @@ function compareCards() {
 		alert('A tie! This means war!')
 		if (player1.length > 3 && player2.length > 3) {
 			war();	
-		} else if ((player1.length < 4) || (player2.length < 4)) {
-			alert('GAME OVER. One player does not have enough cards for war and must forfeit. Refresh the page to play again!');
+		} else if (player1.length < 4) {
+			alert(`GAME OVER. ${player1Name} does not have enough cards for war and must forfeit. Refresh the page to play again!`);
+		} else {
+			alert(`GAME OVER. ${player2Name} does not have enough cards for war and must forfeit. Refresh the page to play again!`);
 		}
 		
 	} 
