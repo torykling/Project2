@@ -1,3 +1,7 @@
+// create a player name 
+let player1Name = prompt("Welcome to War! Please enter a name for Player 1");
+let player2Name = prompt("Please enter a name for Player 2. Log startGame() to the console to begin.");
+
 
 // creating a card class to build the deck
 class Card {
@@ -64,18 +68,18 @@ function pushPotItems(player) {
 const whatCards = () => {
 	const player1Card = thePot[thePot.length-2]
 	const player2Card = thePot[thePot.length-1]
-	console.log(`Player 1 played a ${player1Card.rank} of ${player1Card.suit}. Player 2 played a ${player2Card.rank} of ${player2Card.suit}.`)
+	console.log(`${player1Name} played a ${player1Card.rank} of ${player1Card.suit}. ${player2Name} played a ${player2Card.rank} of ${player2Card.suit}.`)
 }
 // this function creates an alert to update the user about the results of the round
-const roundAlert = (winner) => alert(`End of round. ${winner} wins! Player 1 has ${player1.length} cards. Player 2 has ${player2.length} cards.`);
+const roundAlert = (winner) => console.log(`End of round. ${winner} wins! ${player1Name} has ${player1.length} cards. ${player2Name} has ${player2.length} cards.`);
 
 
 // this function checks to see if the game is over
 function gameOver(winner) {
 	if (player1.length === 0) {
-		alert('Game over. Player 1 is out of cards. Player 2 wins the game!!! Reload the page to play again!');
+		alert(`Game over. ${player1Name} is out of cards. ${player2Name} wins the game!!! Reload the page to play again!`);
 	} else if (player2.length === 0) {
-		alert('Game over. Player 2 is out of cards. Player 1 wins the game!!! Reload the page to play again!');
+		alert(`Game over. ${player2Name} is out of cards. ${player1Name} wins the game!!! Reload the page to play again!`);
 	} else {
 		roundAlert(winner);
 	}
@@ -83,22 +87,34 @@ function gameOver(winner) {
 
 // this function compares the values of the cards and adds the pot to the back of the winner's deck
 function compareCards() {
+	whatCards();
 	let indexPlayerTwo = thePot.length - 1;
 	let indexPlayerOne = thePot.length - 2;
 	if (thePot[indexPlayerOne].score > thePot[indexPlayerTwo].score) {
-		whatCards();
+		
 		pushPotItems(player1);
-		gameOver('Player 1');
+		gameOver(`${player1Name}`);
 		// roundAlert('Player 1');
 	} else if (thePot[indexPlayerTwo].score > thePot[indexPlayerOne].score) {
-		whatCards();
+		// whatCards();
 		pushPotItems(player2);
-		gameOver('Player 2');
+		gameOver(`${player2Name}`);
 		// roundAlert('Player 2');
 	} else if (thePot[indexPlayerTwo].score === thePot[indexPlayerOne].score) { 
-		whatCards();
+		// whatCards();
 		console.log('A tie! This means war!')
-		war();
+		if (player1.length > 3 && player2.length > 3) {
+			war();	
+		} else if (player1.length < 4) {
+			console.log("One player does not have enough cards for war and must forfeit.");
+			player2.push(player1);
+			gameOver(player2);
+		} else {
+			console.log("One player does not have enough cards for war and must forfeit.");
+			player1.push(player2);
+			gameOver(player1);
+		}
+		
 	} 
 }
 
@@ -122,8 +138,15 @@ function playGame() {
 	compareCards();
 }
 
+// function to end the game quickly
+function keepPlaying() {
+	while (player1.length > 0 && player2.length > 0) {
+		playGame();
+	}
+}
+
 //welcome alert
-alert('Welcome to war! Log startGame() to the console to start the game.');
+// alert('Welcome to war! Log startGame() to the console to start the game.');
 
 // need to figure out a prompt that would allow the players to enter their names and rename player1 and player2
 
