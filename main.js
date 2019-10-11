@@ -107,11 +107,15 @@ function compareCards() {
 			war();	
 		} else if (player1.length < 4) {
 			console.log("One player does not have enough cards for war and must forfeit.");
-			player2.push(player1);
+			for (let i = 0; i < player1.length; i++) {
+				player2.push(player1[i]);
+			}
 			gameOver(player2);
 		} else {
 			console.log("One player does not have enough cards for war and must forfeit.");
-			player1.push(player2);
+			for (let i = 0; i < player1.length; i++) {
+				player2.push(player1[i]);
+			}
 			gameOver(player1);
 		}
 		
@@ -148,5 +152,4 @@ function keepPlaying() {
 //welcome alert
 // alert('Welcome to war! Log startGame() to the console to start the game.');
 
-// need to figure out a prompt that would allow the players to enter their names and rename player1 and player2
 
