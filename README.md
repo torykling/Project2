@@ -1,18 +1,18 @@
-# ->Game of War<-
-## ->Project 2<-
+# -> Game of War <-
+## -> Project 2 <-
 
-## ->Goal<-
+## -> Goal <-
 ### The goal of this project was to create a program that would run in the console and simulate the classic card game "War".
 
 ![Game Screenshot](gameScreenshot.png "Game Screenshot")
 
-## ->Languages<-
+## -> Languages <-
 ### This game is built primarily in JavaScript with some html to allow the user to see the game in the browser console. 
 
-## ->Download<-
+## -> Download <-
 ### To download this game, fork and clone this repository. Open the index.html file in your browser. Open the browser console and follow instructions to play the game!
 
-## ->Challenges<-
+## -> Challenges <-
 ### The biggest challenge here was breaking the game down into lots of tiny functions and making sure that they worked together properly. 
 
 ### Figuring out how to shuffle the deck randomly was also a challenge. After playing around with it on my own, I ended up finding a shuffling function online that I could insert easily.
@@ -23,7 +23,7 @@
 
 ### I wonder about the sequence of the program. In several places the code needs to run in order. For example, the drawn cards need to be identified by the whatCard function before being pushed to the winner's deck.In this game, JavaScript ran the functions in the correct order, so I didn't bother to reconstruct my functions. But I wonder if it could cause an error in the future.
 
-## ->Next Steps<-
+## -> Next Steps <-
 ### Someday, I'd like to add a visual component to the game, so that it runs in the browser instead of the console. I want to look for ways to streamline my code and ensure that all functions will always run in the correct order. 
 
 
