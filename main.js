@@ -32,7 +32,10 @@ function shuffle() {
 		[deck[k], deck[l]] = [deck[l], deck[k]];
 	}
 }
-// this function splits the deck in two and deals to players
+
+let player1 = []
+let player2 = []
+// this function deals to players alternating one card at a time
 function dealCards() {
 	for(let m = 0; m < deck.length; m++) {
 		if (m % 2 === 0) { 
@@ -48,10 +51,6 @@ function startGame() {
 	dealCards();
 	alert('The cards have been shuffled and dealt. Ready to play! Log playGame() to draw your cards!');
 }
-
-
-let player1 = []
-let player2 = []
 
 let thePot = []
 
@@ -75,11 +74,18 @@ let round = 0;
 // this function counts the rounds
 function roundCount() {
 	round += 1;
-	// callback();
+	
 }
 // this function creates an alert to update the user about the results of the round
-const roundAlert = (winner) => console.log(`End of round ${round}. ${winner} wins! ${player1Name} has ${player1.length} cards. ${player2Name} has ${player2.length} cards.`);
-
+const roundAlert = (winner) => {
+	if (player1.length === 1) {
+		console.log(`End of round ${round}. ${winner} wins! ${player1Name} has ${player1.length} card. ${player2Name} has ${player2.length} cards.`);
+	} else if (player2.length === 1) {
+		console.log(`End of round ${round}. ${winner} wins! ${player1Name} has ${player1.length} cards. ${player2Name} has ${player2.length} card.`);
+	} else {
+		console.log(`End of round ${round}. ${winner} wins! ${player1Name} has ${player1.length} cards. ${player2Name} has ${player2.length} cards.`);
+	}
+}
 
 // this function checks to see if the game is over
 function gameOver(winner) {
@@ -91,6 +97,7 @@ function gameOver(winner) {
 		console.log(`GAME OVER. ${player2Name} is out of cards. ${player1Name} WINS THE GAME!!! Reload the page to play again!`);
 	} else {
 		roundCount();
+		checkRoundCount();
 		roundAlert(winner);
 	}
 }
@@ -101,7 +108,6 @@ function compareCards() {
 	let indexPlayerTwo = thePot.length - 1;
 	let indexPlayerOne = thePot.length - 2;
 	if (thePot[indexPlayerOne].score > thePot[indexPlayerTwo].score) {
-		
 		pushPotItems(player1);
 		gameOver(`${player1Name}`);
 		// roundAlert('Player 1');
@@ -110,15 +116,18 @@ function compareCards() {
 		pushPotItems(player2);
 		gameOver(`${player2Name}`);
 		// roundAlert('Player 2');
-	} else if (thePot[indexPlayerTwo].score === thePot[indexPlayerOne].score) { 
+	} else if (thePot[indexPlayerOne].score === thePot[indexPlayerTwo].score) { 
 		// whatCards();
-		alert('A tie! This means war!')
+		alert('A tie! This means war!');
+		console.log('A tie! This means war!');
 		if (player1.length > 3 && player2.length > 3) {
 			war();	
 		} else if (player1.length < 4) {
+			player1 = [];
 			alert(`GAME OVER. ${player1Name} does not have enough cards for war and must forfeit. Refresh the page to play again!`);
 			console.log(`GAME OVER. ${player1Name} does not have enough cards for war and must forfeit. Refresh the page to play again!`);
 		} else {
+			player2 = [];
 			alert(`GAME OVER. ${player2Name} does not have enough cards for war and must forfeit. Refresh the page to play again!`);
 			console.log(`GAME OVER. ${player2Name} does not have enough cards for war and must forfeit. Refresh the page to play again!`);
 		}
@@ -139,7 +148,7 @@ function war() {
 	compareCards();
 }
 
-// this function initiates the game play
+// this function initiates the game play for each round
 function playGame() {
 	oneCardToPot(player1);
 	oneCardToPot(player2);
@@ -153,7 +162,13 @@ function keepPlaying() {
 	}
 }
 
-//welcome alert
-// alert('Welcome to war! Log startGame() to the console to start the game.');
-
+// prevents game from going too long 
+function checkRoundCount() {
+	if (round >= 2000) {
+		alert(`GAME OVER. It's a draw! This game has gone on for thousands of rounds and has no winner.`);
+		console.log(`GAME OVER. It's a draw! This game has gone on for thousands of rounds and has no winner.`);
+		player1 = [];
+		player2 = [];
+	}
+}
 
